@@ -4,8 +4,7 @@ import org.openqa.selenium.WebDriver;
 /**
  * Page Object encapsulates the Home Page
  */
-public class HomePage extends PageBase{
-    protected WebDriver driver;
+public class HomePage extends PageBase {
 
     private By userBy = By.xpath("/html/body/div[2]/div/div[1]/div/div[1]/div[2]/div[5]/div/div[2]/div/div[1]/span[1]");
     private By signoutBy = By.xpath("/html/body/div[2]/div/div[1]/div/div[1]/div[2]/div[5]/div/div[2]/div/div[2]/div/div[3]/div");

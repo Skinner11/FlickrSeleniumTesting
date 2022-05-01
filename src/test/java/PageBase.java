@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public abstract class PageBase {
-    private WebDriver driver;
+    protected WebDriver driver;
     private WebDriverWait wait;
 
     public PageBase(WebDriver driver) {

@@ -3,8 +3,6 @@ import org.openqa.selenium.WebDriver;
 
 public class SignoutPage extends PageBase {
 
-    protected WebDriver driver;
-
     private By signoutMessage = By.xpath("/html/body/div[8]/div[2]/h1");
 
     public SignoutPage(WebDriver driver) {
