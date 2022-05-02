@@ -13,8 +13,9 @@ public class HomePage extends PageBase {
     private By acceptCookiesButtonBy = By.xpath("//*[@class=\"acceptAll\"]");
     private By signoutButtonBy = By.xpath("//input[@name='go' and @value='YES, SIGN ME OUT']");
 
-    // Account and dropdown items
+    // Buttons
     private By accountButtonBy = By.xpath("//div[@class='avatar person tiny no-menu']");
+    private By uploadButtonBy = By.xpath("//i[@class='upload-icon']");
 
     public HomePage(WebDriver driver){
         super(driver);
@@ -27,7 +28,7 @@ public class HomePage extends PageBase {
         getElementAfterWait(acceptCookiesButtonBy).click();
     }
 
-    public AccountPage checkAccount() {
+    public AccountPage goToAccountPage() {
         getElementAfterWait(accountButtonBy).click();
         return new AccountPage(driver);
     }
@@ -39,5 +40,10 @@ public class HomePage extends PageBase {
         driver.get("https://www.flickr.com/logout.gne");
         getElementAfterWait(signoutButtonBy).click();
         return new SignoutPage(driver);
+    }
+
+    public UploadPage goToUploadPage() {
+        getElementAfterWait(uploadButtonBy).click();
+        return new UploadPage(driver);
     }
 }
