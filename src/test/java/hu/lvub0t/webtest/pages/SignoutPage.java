@@ -9,7 +9,7 @@ public class SignoutPage extends PageBase {
 
 
     public SignoutPage(WebDriver driver) {
-        super(driver);
+        super(driver,false);
     }
 
     public String getAccountPickerTitle() {

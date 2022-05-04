@@ -11,7 +11,7 @@ public class SigninPage extends PageBase {
     private By passwordBy =By.xpath("//input[@id='login-password']");
 
     public SigninPage(WebDriver driver) {
-        super(driver);
+        super(driver,true);
         this.driver.get("https://identity.flickr.com/");
         consentToCookies();
     }
@@ -33,6 +33,6 @@ public class SigninPage extends PageBase {
         getElementAfterWait(nextButtonBy).click();
         getElementAfterWait(passwordBy).sendKeys(password);
         getElementAfterWait(nextButtonBy).click();
-        return new HomePage(driver);
+        return new HomePage(driver, false);
     }
 }

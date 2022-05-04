@@ -9,11 +9,10 @@ import org.openqa.selenium.interactions.Actions;
  */
 public class HomePage extends PageBase {
 
-    private By signoutButtonBy = By.xpath("//input[@name='go' and @value='YES, SIGN ME OUT']");
-
     // Buttons
     private By accountButtonBy = By.xpath("//div[@class='avatar person tiny no-menu']");
     private By settingsButtonBy = By.xpath("//div//section//ul/li/a[@href='/account']");
+    private By signoutButtonBy = By.xpath("//section[@class='menu-section']//ul//li[4]//a");
     private By photostreamButtonBy = By.cssSelector("[aria-label='Photostream']");
 
     // Elements
@@ -22,23 +21,24 @@ public class HomePage extends PageBase {
     // Hoverable elements
     private By youBy = By.cssSelector("[aria-label='You']");
 
-    public HomePage(WebDriver driver){
-        super(driver);
-        // Wait for adverts to load...
-        getElementAfterWait(advertBy);
+    public HomePage(WebDriver driver, boolean manualNavigation){
+        super(driver, manualNavigation);
+
+        if(manualNavigation)
+            driver.get("https://www.flickr.com/");
+        else
+            // Wait for adverts to load...
+            getElementAfterWait(advertBy);
     }
 
     public AccountPage goToAccountPage() {
         getElementAfterWait(accountButtonBy).click();
         getElementAfterWait(settingsButtonBy).click();
-        return new AccountPage(driver);
+        return new AccountPage(driver, false);
     }
 
     public SignoutPage signOut() {
-        // Due to the nature of the way the website was scripted,
-        // the profile pic dropdown is not openable by sending a click with Selenium
-        // hence I'm directly going to the logout page url
-        driver.get("https://www.flickr.com/logout.gne");
+        getElementAfterWait(accountButtonBy).click();
         getElementAfterWait(signoutButtonBy).click();
         return new SignoutPage(driver);
     }
@@ -47,6 +47,6 @@ public class HomePage extends PageBase {
         Actions actionProvider = new Actions(driver);
         actionProvider.moveToElement(getElementAfterWait(youBy)).build().perform();
         getElementAfterWait(photostreamButtonBy).click();
-        return new PhotostreamPage(driver);
+        return new PhotostreamPage(driver, false);
     }
 }

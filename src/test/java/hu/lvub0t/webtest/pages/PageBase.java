@@ -13,7 +13,7 @@ public abstract class PageBase {
     private WebDriverWait wait;
     private ChromeOptions options;
 
-    public PageBase(WebDriver driver) {
+    public PageBase(WebDriver driver, boolean manualNavigation) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, 10);
     }

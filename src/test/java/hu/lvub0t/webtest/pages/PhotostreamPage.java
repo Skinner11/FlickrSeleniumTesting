@@ -13,8 +13,12 @@ public class PhotostreamPage extends PageBase {
 
     WebElement photoStreamContainer;
 
-    public PhotostreamPage(WebDriver driver) {
-        super(driver);
+    public PhotostreamPage(WebDriver driver, boolean manualNavigation) {
+        super(driver,manualNavigation);
+
+        if(manualNavigation)
+            driver.get("https://www.flickr.com/photos/me");
+
         photoStreamContainer = getElementAfterWait(photoStreamContainerBy);
     }
 

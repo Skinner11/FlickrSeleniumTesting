@@ -10,8 +10,12 @@ public class AccountPage extends PageBase {
     private By changeButtonBy = By.xpath("//div[@class='row profile']//div//div[@class='content']//p[2]//a");
     private By accountDivBy = By.xpath("//div[@id='account-details-settings']");
 
-    public AccountPage(WebDriver driver) {
-        super(driver);
+    public AccountPage(WebDriver driver, boolean manualNavigation) {
+        super(driver, manualNavigation);
+
+        if(manualNavigation)
+            driver.get("https://www.flickr.com/account");
+
         getElementAfterWait(accountDivBy);
     }
 
@@ -25,6 +29,6 @@ public class AccountPage extends PageBase {
 
     public NameChangePage goToNameChange() {
         getElementAfterWait(changeButtonBy).click();
-        return new NameChangePage(driver);
+        return new NameChangePage(driver, false);
     }
 }

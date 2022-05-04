@@ -13,7 +13,7 @@ public class PhotoPage extends PageBase {
     private By downloadOriginalButtonBy = By.xpath("//ul//li[@class='Original']//a");
 
     public PhotoPage(WebDriver driver) {
-        super(driver);
+        super(driver,false);
         getElementAfterWait(viewCountLabelBy);
     }
 
@@ -28,7 +28,7 @@ public class PhotoPage extends PageBase {
 
     public PhotostreamPage backToPhotostream() {
         driver.navigate().back();
-        return new PhotostreamPage(driver);
+        return new PhotostreamPage(driver, false);
     }
 
 }
