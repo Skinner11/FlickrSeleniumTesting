@@ -1,5 +1,7 @@
 package hu.lvub0t.webtest.util;
 
+import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class TestUtils {
@@ -10,6 +12,16 @@ public class TestUtils {
     public static final String[] NEW_NAMES = {"Mrs. Ape", "Ms. Ape", "Jr. Ape", "Mr. Ape"};
 
     public static String getDownloadsPath() {
-        return Paths.get("").toAbsolutePath().toString()+"\\downloads\\";
+        String path = Paths.get("").toAbsolutePath().toString()+"\\downloads\\";
+
+        if(!Files.exists(Paths.get(path))) {
+            try {
+                Files.createDirectories(Paths.get(path));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return path;
     }
 }
