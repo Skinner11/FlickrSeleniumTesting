@@ -8,10 +8,11 @@ public class AccountPage extends PageBase {
     private By emailBy = By.xpath("//p[@class='email']");
     private By nameBy = By.xpath("//div[@class='row profile']//div//div[@class='content']//p[2]//span");
     private By changeButtonBy = By.xpath("//div[@class='row profile']//div//div[@class='content']//p[2]//a");
+    private By accountDivBy = By.xpath("//div[@id='account-details-settings']");
 
     public AccountPage(WebDriver driver) {
         super(driver);
-        getElementAfterWait(By.tagName("h1"));
+        getElementAfterWait(accountDivBy);
     }
 
     public String getUserEmail() {

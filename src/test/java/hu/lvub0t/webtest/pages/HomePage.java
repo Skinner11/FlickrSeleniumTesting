@@ -13,7 +13,7 @@ public class HomePage extends PageBase {
 
     // Buttons
     private By accountButtonBy = By.xpath("//div[@class='avatar person tiny no-menu']");
-    private By uploadButtonBy = By.xpath("//i[@class='upload-icon']");
+    private By settingsButtonBy = By.xpath("//div//section//ul/li/a[@href='/account']");
     private By photostreamButtonBy = By.cssSelector("[aria-label='Photostream']");
 
     // Elements
@@ -30,6 +30,7 @@ public class HomePage extends PageBase {
 
     public AccountPage goToAccountPage() {
         getElementAfterWait(accountButtonBy).click();
+        getElementAfterWait(settingsButtonBy).click();
         return new AccountPage(driver);
     }
 
