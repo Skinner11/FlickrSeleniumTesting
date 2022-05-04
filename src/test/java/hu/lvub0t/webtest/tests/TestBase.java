@@ -30,6 +30,6 @@ public abstract class TestBase {
 
     @After
     public void after() {
-        //driver.close();
+        driver.close();
     }
 }
