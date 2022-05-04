@@ -2,15 +2,12 @@ package hu.lvub0t.webtest.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 /**
  * Page Object encapsulates the Home Page
  */
 public class HomePage extends PageBase {
 
-    private By cookieFrameBy = By.xpath("//iframe[@title='TrustArc Cookie Consent Manager']");
-    private By acceptCookiesButtonBy = By.xpath("//*[@class=\"acceptAll\"]");
     private By signoutButtonBy = By.xpath("//input[@name='go' and @value='YES, SIGN ME OUT']");
 
     // Buttons
@@ -19,13 +16,6 @@ public class HomePage extends PageBase {
 
     public HomePage(WebDriver driver){
         super(driver);
-        handleCookies();
-    }
-
-    private void handleCookies() {
-        WebElement cookieFrame = getElementAfterWait(cookieFrameBy);
-        driver.switchTo().frame(cookieFrame);
-        getElementAfterWait(acceptCookiesButtonBy).click();
     }
 
     public AccountPage goToAccountPage() {

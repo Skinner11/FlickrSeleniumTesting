@@ -1,6 +1,7 @@
 package hu.lvub0t.webtest.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 
 public class SigninPage extends PageBase {
@@ -12,6 +13,12 @@ public class SigninPage extends PageBase {
     public SigninPage(WebDriver driver) {
         super(driver);
         this.driver.get("https://identity.flickr.com/");
+        consentToCookies();
+    }
+
+    private void consentToCookies() {
+        driver.manage().addCookie(new Cookie("cmapi_cookie_privacy", "permit 1,2,3",".flickr.com","/",null));
+        driver.manage().addCookie(new Cookie("notice_gdpr_prefs", "0,1,2:",".flickr.com","/",null));
     }
 
     /**
