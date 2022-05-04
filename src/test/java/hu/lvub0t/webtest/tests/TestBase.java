@@ -1,7 +1,7 @@
 package hu.lvub0t.webtest.tests;
 
-import org.junit.After;
-import org.junit.Before;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -15,7 +15,7 @@ public abstract class TestBase {
     public WebDriver driver;
     private ChromeOptions options;
 
-    @Before
+    @BeforeClass
     public void setup() {
         WebDriverManager.chromedriver().setup();
         // Set download folder
@@ -28,7 +28,7 @@ public abstract class TestBase {
         driver.manage().window().maximize();
     }
 
-    @After
+    @AfterClass
     public void after() {
         driver.close();
     }
