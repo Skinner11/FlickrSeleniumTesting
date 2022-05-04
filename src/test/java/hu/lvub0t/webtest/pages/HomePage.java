@@ -2,6 +2,7 @@ package hu.lvub0t.webtest.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.interactions.Actions;
 
 /**
  * Page Object encapsulates the Home Page
@@ -13,9 +14,18 @@ public class HomePage extends PageBase {
     // Buttons
     private By accountButtonBy = By.xpath("//div[@class='avatar person tiny no-menu']");
     private By uploadButtonBy = By.xpath("//i[@class='upload-icon']");
+    private By photostreamButtonBy = By.cssSelector("[aria-label='Photostream']");
+
+    // Elements
+    private By advertBy = By.cssSelector("[aria-label='Advertisement']");
+
+    // Hoverable elements
+    private By youBy = By.cssSelector("[aria-label='You']");
 
     public HomePage(WebDriver driver){
         super(driver);
+        // Wait for adverts to load...
+        getElementAfterWait(advertBy);
     }
 
     public AccountPage goToAccountPage() {
@@ -32,8 +42,10 @@ public class HomePage extends PageBase {
         return new SignoutPage(driver);
     }
 
-    public UploadPage goToUploadPage() {
-        getElementAfterWait(uploadButtonBy).click();
-        return new UploadPage(driver);
+    public PhotostreamPage goToPhotoStreamPage() {
+        Actions actionProvider = new Actions(driver);
+        actionProvider.moveToElement(getElementAfterWait(youBy)).build().perform();
+        getElementAfterWait(photostreamButtonBy).click();
+        return new PhotostreamPage(driver);
     }
 }

@@ -17,7 +17,7 @@ import hu.lvub0t.webtest.pages.SigninPage;
 
 public class AccountTest extends TestBase {
 
-    //@Test
+    @Test
     public void checkOpeningAccountPage() {
         SigninPage signInPage = new SigninPage(driver);
         HomePage homePage = signInPage.loginValidUser(EMAIL, PASSWORD);
@@ -37,6 +37,7 @@ public class AccountTest extends TestBase {
         AccountPage accountPage = homePage.goToAccountPage();
         NameChangePage nameChangePage = accountPage.goToNameChange();
         accountPage = nameChangePage.changeName(newName);
+
         assertEquals(accountPage.getUserName(),newName);
     }
 }
